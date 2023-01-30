@@ -11,6 +11,22 @@ const colorGUI = (folder, object, objectParameter, label = propertyColor) => {
     });
 };
 
+const propertyGroundColor = "groundColor";
+
+const groundColorGUI = (
+  folder,
+  object,
+  objectParameter,
+  label = propertyGroundColor
+) => {
+  folder
+    .addColor(objectParameter, propertyGroundColor)
+    .name(label)
+    .onChange(() => {
+      object.groundColor.set(objectParameter[propertyGroundColor]);
+    });
+};
+
 const propertyIntensity = "intensity";
 const intensityMin = 0;
 const intensityMax = 1;
@@ -31,5 +47,18 @@ export const intensityAndColorGUI = (
 ) => {
   intensityGUI(folder, object, label);
   colorGUI(folder, object, objectParameter);
+  return folder;
+};
+
+export const intensityAndDoubleColorGUI = (
+  folder,
+  object,
+  objectParameter,
+  label
+) => {
+  intensityGUI(folder, object, label);
+  colorGUI(folder, object, objectParameter);
+
+  groundColorGUI(folder, object, objectParameter);
   return folder;
 };

@@ -19,6 +19,12 @@ import {
 } from "./gui-factory/mesh/mesh-gui";
 import { ambientLightFactory } from "./light-factory/ambient-light-factory";
 import { ambientLightGuiFactory } from "./gui-factory/ambient-light/ambient-light-gui";
+import { hemisphereLightFactory } from "./light-factory/hemisphere-light-factory";
+import { hemisphereLightHelperFactory } from "./helper-factory/hemisphere-light-helper-factory";
+import {
+  hemisphereLightGuiFactory,
+  hemisphereLightHelperGuiFactory,
+} from "./gui-factory/hemisphere-light/hemisphere-light-gui";
 /**
  * Base
  */
@@ -45,6 +51,7 @@ const {
   folderMeshSphere,
   folderMeshCommon,
   folderAmbientLight,
+  folderHemisphereLight,
 } = createDebugGUI();
 
 // Global Mesh like metalness/roughness
@@ -60,6 +67,15 @@ meshGuiFactory(folderMeshSphere, sphere);
 // No need to helper since position is useless
 const ambientLight = addObjectToScene(ambientLightFactory());
 ambientLightGuiFactory(folderAmbientLight, ambientLight);
+
+// HemisphereLight
+const hemisphereLight = addObjectToScene(hemisphereLightFactory());
+hemisphereLightGuiFactory(folderHemisphereLight, hemisphereLight);
+
+const hemisphereLightHelper = addObjectToScene(
+  hemisphereLightHelperFactory(hemisphereLight)
+);
+hemisphereLightHelperGuiFactory(folderHemisphereLight, hemisphereLightHelper);
 
 // DirectionalLight
 // Emit in only one direction to the 'target point' (default is (0,0,0))
@@ -132,6 +148,7 @@ const tick = () => {
 
   // Update Helper
   directionalLightHelper.update();
+  hemisphereLightHelper.update();
 
   // Update mesh rotation
   cube.rotation.x = 0.15 * elapsedTime;
