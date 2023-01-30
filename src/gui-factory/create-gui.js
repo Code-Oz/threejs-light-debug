@@ -4,14 +4,16 @@ export const createDebugGUI = () => {
   const gui = new dat.GUI();
 
   const folderMesh = gui.addFolder("Mesh");
-  const folderMeshCommon = gui.addFolder("Common");
+  const folderMeshCommon = folderMesh.addFolder("Common");
   const folderMeshCube = folderMesh.addFolder("Main Cube");
   const folderMeshCubeFar = folderMesh.addFolder("Far Cube");
   const folderMeshFloor = folderMesh.addFolder("Floor");
   const folderMeshTorus = folderMesh.addFolder("Torus");
   const folderMeshSphere = folderMesh.addFolder("Sphere");
 
-  const folderDirectionnalLight = gui.addFolder("DirectionnalLight");
+  const folderLight = gui.addFolder("Lights");
+  const folderDirectionnalLight = folderLight.addFolder("DirectionnalLight");
+  const folderAmbientLight = folderLight.addFolder("AmbientLight");
 
   return {
     folderDirectionnalLight,
@@ -22,5 +24,6 @@ export const createDebugGUI = () => {
     folderMeshFloor,
     folderMeshTorus,
     folderMeshSphere,
+    folderAmbientLight,
   };
 };

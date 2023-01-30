@@ -5,7 +5,7 @@ export const sizes = {
   height: window.innerHeight,
 };
 
-const DEFAULT_VISIBLE = true;
+const DEFAULT_VISIBLE = false;
 
 // AXES HELPER
 export const AXES_HELPER_SIZE_DEFAULT = 2;
@@ -39,6 +39,14 @@ export const BOX_FAR_POSITION_Z_DEFAULT = 0;
 
 // MATERIAL
 export const defaultMaterial = materialPhysical;
+
+// AMBIENT LIGHT
+export const AMBIENT_LIGHT_COLOR_DEFAULT = 0xffffff;
+export const AMBIENT_LIGHT_INTENSITY_DEFAULT = 0.5;
+export const AMBIENT_LIGHT_POSITION_X_DEFAULT = 0;
+export const AMBIENT_LIGHT_POSITION_Y_DEFAULT = 0;
+export const AMBIENT_LIGHT_POSITION_Z_DEFAULT = 0;
+export const AMBIENT_LIGHT_IS_VISIBLE_DEFAULT = DEFAULT_VISIBLE;
 
 // DIRECTIONNAL LIGHT
 export const DIRECTIONNAL_LIGHT_COLOR_DEFAULT = 0xff0000;

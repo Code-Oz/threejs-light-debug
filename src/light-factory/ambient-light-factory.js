@@ -1,0 +1,24 @@
+import * as THREE from "three";
+import {
+  AMBIENT_LIGHT_COLOR_DEFAULT,
+  AMBIENT_LIGHT_INTENSITY_DEFAULT,
+  AMBIENT_LIGHT_POSITION_X_DEFAULT,
+  AMBIENT_LIGHT_POSITION_Y_DEFAULT,
+  AMBIENT_LIGHT_POSITION_Z_DEFAULT,
+  AMBIENT_LIGHT_IS_VISIBLE_DEFAULT,
+} from "../config";
+
+export const ambientLightFactory = () => {
+  const ambientLight = new THREE.AmbientLight(
+    AMBIENT_LIGHT_COLOR_DEFAULT,
+    AMBIENT_LIGHT_INTENSITY_DEFAULT
+  );
+  ambientLight.position.set(
+    AMBIENT_LIGHT_POSITION_X_DEFAULT,
+    AMBIENT_LIGHT_POSITION_Y_DEFAULT,
+    AMBIENT_LIGHT_POSITION_Z_DEFAULT
+  );
+  ambientLight.visible = AMBIENT_LIGHT_IS_VISIBLE_DEFAULT;
+
+  return ambientLight;
+};

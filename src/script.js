@@ -17,6 +17,8 @@ import {
   meshGuiFactory,
   meshCommonMaterialGuiFactory,
 } from "./gui-factory/mesh/mesh-gui";
+import { ambientLightFactory } from "./light-factory/ambient-light-factory";
+import { ambientLightGuiFactory } from "./gui-factory/ambient-light/ambient-light-gui";
 /**
  * Base
  */
@@ -42,6 +44,7 @@ const {
   folderMeshTorus,
   folderMeshSphere,
   folderMeshCommon,
+  folderAmbientLight,
 } = createDebugGUI();
 
 // Global Mesh like metalness/roughness
@@ -51,6 +54,12 @@ meshGuiFactory(folderMeshCubeFar, cubeFar);
 meshGuiFactory(folderMeshFloor, floor);
 meshGuiFactory(folderMeshTorus, torus);
 meshGuiFactory(folderMeshSphere, sphere);
+
+// AmbientLight
+// Emit in all object in the scene with the same value
+// No need to helper since position is useless
+const ambientLight = addObjectToScene(ambientLightFactory());
+ambientLightGuiFactory(folderAmbientLight, ambientLight);
 
 // DirectionalLight
 // Emit in only one direction to the 'target point' (default is (0,0,0))
