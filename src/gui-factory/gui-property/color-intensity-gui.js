@@ -29,7 +29,7 @@ const groundColorGUI = (
 
 const propertyIntensity = "intensity";
 const intensityMin = 0;
-const intensityMax = 1;
+const intensityMax = 10;
 const intensityStep = 0.01;
 
 export const intensityGUI = (folder, object, label = propertyIntensity) => {

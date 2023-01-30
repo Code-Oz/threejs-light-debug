@@ -16,6 +16,7 @@ export const createDebugGUI = () => {
   const folderAmbientLight = folderLight.addFolder("AmbientLight");
   const folderHemisphereLight = folderLight.addFolder("HemisphereLight");
   const folderPointLight = folderLight.addFolder("PointLight");
+  const folderReactAreaLight = folderLight.addFolder("ReactArea");
 
   return {
     folderDirectionnalLight,
@@ -29,5 +30,6 @@ export const createDebugGUI = () => {
     folderAmbientLight,
     folderHemisphereLight,
     folderPointLight,
+    folderReactAreaLight,
   };
 };

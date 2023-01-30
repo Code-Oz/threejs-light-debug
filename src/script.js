@@ -31,6 +31,12 @@ import {
   pointLightHelperGuiFactory,
 } from "./gui-factory/point-light/point-light-gui";
 import { pointLightHelperFactory } from "./helper-factory/point-light-helper-factory";
+import { rectAreaLightFactory } from "./light-factory/react-area-light-factory";
+import {
+  reactAreaHelperGuiFactory,
+  reactAreaLightGuiFactory,
+} from "./gui-factory/rect-area-light/rect-area-light";
+import { rectAreaLightHelperFactory } from "./helper-factory/react-area-helper-factory";
 /**
  * Base
  */
@@ -59,6 +65,7 @@ const {
   folderAmbientLight,
   folderHemisphereLight,
   folderPointLight,
+  folderReactAreaLight,
 } = createDebugGUI();
 
 // Global Mesh like metalness/roughness
@@ -103,6 +110,15 @@ pointLightGuiFactory(folderPointLight, pointLight);
 
 const pointLightHelper = addObjectToScene(pointLightHelperFactory(pointLight));
 pointLightHelperGuiFactory(folderPointLight, pointLightHelper);
+
+// ReactAreaLight
+const rectAreaLight = addObjectToScene(rectAreaLightFactory());
+reactAreaLightGuiFactory(folderReactAreaLight, rectAreaLight);
+
+const rectAreaLightHelper = addObjectToScene(
+  rectAreaLightHelperFactory(rectAreaLight)
+);
+reactAreaHelperGuiFactory(folderReactAreaLight, rectAreaLightHelper);
 
 /**
  * Sizes
@@ -164,6 +180,9 @@ const tick = () => {
   directionalLightHelper.update();
   hemisphereLightHelper.update();
   pointLightHelper.update();
+  rectAreaLightHelper.position.copy(rectAreaLight.position);
+  rectAreaLightHelper.quaternion.copy(rectAreaLight.quaternion);
+  rectAreaLightHelper.update();
 
   // Update mesh rotation
   cube.rotation.x = 0.15 * elapsedTime;
