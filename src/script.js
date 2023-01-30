@@ -35,8 +35,14 @@ import { rectAreaLightFactory } from "./light-factory/react-area-light-factory";
 import {
   reactAreaHelperGuiFactory,
   reactAreaLightGuiFactory,
-} from "./gui-factory/rect-area-light/rect-area-light";
+} from "./gui-factory/rect-area-light/rect-area-light-gui";
 import { rectAreaLightHelperFactory } from "./helper-factory/react-area-helper-factory";
+import { sportLightFactory } from "./light-factory/spot-light-factory";
+import {
+  spotAreaHelperGuiFactory,
+  spotLightGuiFactory,
+} from "./gui-factory/spot-light/spot-light-gui";
+import { spotLightHelperFactory } from "./helper-factory/spot-light-helper-factory";
 /**
  * Base
  */
@@ -66,6 +72,7 @@ const {
   folderHemisphereLight,
   folderPointLight,
   folderReactAreaLight,
+  folderSpotLight,
 } = createDebugGUI();
 
 // Global Mesh like metalness/roughness
@@ -119,6 +126,13 @@ const rectAreaLightHelper = addObjectToScene(
   rectAreaLightHelperFactory(rectAreaLight)
 );
 reactAreaHelperGuiFactory(folderReactAreaLight, rectAreaLightHelper);
+
+// SpotLight
+const [spotLight] = addObjectToScene(sportLightFactory());
+spotLightGuiFactory(folderSpotLight, spotLight);
+
+const spotLightHelper = addObjectToScene(spotLightHelperFactory(spotLight));
+spotAreaHelperGuiFactory(folderSpotLight, spotLightHelper);
 
 /**
  * Sizes
@@ -183,6 +197,7 @@ const tick = () => {
   rectAreaLightHelper.position.copy(rectAreaLight.position);
   rectAreaLightHelper.quaternion.copy(rectAreaLight.quaternion);
   rectAreaLightHelper.update();
+  spotLightHelper.update();
 
   // Update mesh rotation
   cube.rotation.x = 0.15 * elapsedTime;

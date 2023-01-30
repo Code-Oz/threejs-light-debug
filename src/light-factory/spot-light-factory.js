@@ -1,0 +1,32 @@
+import * as THREE from "three";
+import {
+  SPOT_COLOR_DEFAULT,
+  SPOT_INTENSITY_DEFAULT,
+  SPOT_DISTANCE_DEFAULT,
+  SPOT_ANGLE_DEFAULT,
+  SPOT_PENUMBRA_DEFAULT,
+  SPOT_DECAY_DEFAULT,
+  SPOT_POSITION_X_DEFAULT,
+  SPOT_POSITION_Y_DEFAULT,
+  SPOT_POSITION_Z_DEFAULT,
+  SPOT_IS_VISIBLE_DEFAULT,
+} from "../config";
+
+export const sportLightFactory = () => {
+  const sportLight = new THREE.SpotLight(
+    SPOT_COLOR_DEFAULT,
+    SPOT_INTENSITY_DEFAULT,
+    SPOT_DISTANCE_DEFAULT,
+    SPOT_ANGLE_DEFAULT,
+    SPOT_PENUMBRA_DEFAULT,
+    SPOT_DECAY_DEFAULT
+  );
+  sportLight.position.set(
+    SPOT_POSITION_X_DEFAULT,
+    SPOT_POSITION_Y_DEFAULT,
+    SPOT_POSITION_Z_DEFAULT
+  );
+  sportLight.visible = SPOT_IS_VISIBLE_DEFAULT;
+
+  return [sportLight, sportLight.target];
+};
