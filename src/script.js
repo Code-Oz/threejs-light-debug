@@ -25,6 +25,12 @@ import {
   hemisphereLightGuiFactory,
   hemisphereLightHelperGuiFactory,
 } from "./gui-factory/hemisphere-light/hemisphere-light-gui";
+import { pointLightFactory } from "./light-factory/point-light-factory";
+import {
+  pointLightGuiFactory,
+  pointLightHelperGuiFactory,
+} from "./gui-factory/point-light/point-light-gui";
+import { pointLightHelperFactory } from "./helper-factory/point-light-helper-factory";
 /**
  * Base
  */
@@ -52,6 +58,7 @@ const {
   folderMeshCommon,
   folderAmbientLight,
   folderHemisphereLight,
+  folderPointLight,
 } = createDebugGUI();
 
 // Global Mesh like metalness/roughness
@@ -89,6 +96,13 @@ directionalLightHelperGuiFactory(
   folderDirectionnalLight,
   directionalLightHelper
 );
+
+// PointLight
+const pointLight = addObjectToScene(pointLightFactory());
+pointLightGuiFactory(folderPointLight, pointLight);
+
+const pointLightHelper = addObjectToScene(pointLightHelperFactory(pointLight));
+pointLightHelperGuiFactory(folderPointLight, pointLightHelper);
 
 /**
  * Sizes
@@ -149,6 +163,7 @@ const tick = () => {
   // Update Helper
   directionalLightHelper.update();
   hemisphereLightHelper.update();
+  pointLightHelper.update();
 
   // Update mesh rotation
   cube.rotation.x = 0.15 * elapsedTime;
